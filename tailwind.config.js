@@ -7,6 +7,12 @@ module.exports = {
       fontFamily: {
         main: ['"Bodoni"', 'serif'],
       },
+      minHeight: {
+        page: 'calc(100vh - 5rem)',
+      },
+      height: {
+        page: 'calc(100vh - 5rem)',
+      },
     },
   },
   plugins: [],

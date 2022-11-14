@@ -1,6 +1,15 @@
 import Head from 'next/head'
+import { useEffect } from 'react'
 export default function Home() {
 
+  useEffect(() => {
+
+    // This is the code that will run on page load.
+
+    return () => {
+
+    }
+  }, [])
 
 
   return (
@@ -11,10 +20,22 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex flex-col justify-center items-center h-page">
-        <h1 className='text-4xl font-main text-white'>
-          Become a Genius without corporate BS
-        </h1>
+      <div className="flex flex-col items-center justify-center h-screen">
+        <div>
+          
+        </div>
+        <div className='flex justify-start'>
+          <h1 className='text-5xl font-black font-main text-black'>
+            Become a <a className="font-genius text-red-500"> Genius </a>
+          </h1>
+        </div>
+        <div className='flex justify-end'>
+          <h1 className='text-5xl font-black font-main text-black'>
+            Without The Corporate BS
+          </h1>
+        </div>
+      </div>
+      <div className='h-screen'>
 
       </div>
     </>

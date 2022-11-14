@@ -6,3 +6,16 @@
   font-family: "Bodoni";
   src: url("../assets/fonts/Bodoni/Bodoni-11-Fatface.ttf");
 }
+
+@font-face {
+  font-family: "Funk";
+  src: url("../assets/fonts/Funk/LT-Funk.otf");
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.new-page {
+  @apply min-h-page translate-y-[5rem];
+}

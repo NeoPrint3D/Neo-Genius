@@ -5,7 +5,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        main: ['"Bodoni"', 'serif'],
+        main: ['"Funk"', 'serif'],
+        genius: ['"Bodoni"', 'serif'],
       },
       minHeight: {
         page: 'calc(100vh - 5rem)',

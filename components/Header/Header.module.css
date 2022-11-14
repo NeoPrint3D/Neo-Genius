@@ -1,0 +1,27 @@
+.testInner::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.25em;
+  background-color: hotpink;
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms;
+}
+
+.testInner:hover::after,
+.testInner:focus::after {
+  opacity: 1;
+  transform: translate3d(0, 0.2em, 0);
+}
+.test .testInner::after {
+  opacity: 1;
+  transform: scale(0);
+  transform-origin: center;
+}
+
+.test .testInner:hover::after,
+.test .testInner:focus::after {
+  transform: scale(1);
+}

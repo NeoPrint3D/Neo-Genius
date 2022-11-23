@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 export default function MainLayout({ children }: { children: React.ReactNode }) {
     return (
         <LazyMotion features={domMax}>
-            <div className="bg-white min-h-screen">
+            <div className="bg-[#f8f8f8] min-h-screen text-black">
                 <Header />
                 {children}
                 <Footer />

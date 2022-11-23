@@ -4,12 +4,17 @@
 
 @font-face {
   font-family: "Bodoni";
-  src: url("../assets/fonts/Bodoni/Bodoni-11-Fatface.ttf");
+  src: url("../assets/fonts/Bodoni.ttf");
 }
 
 @font-face {
-  font-family: "Funk";
-  src: url("../assets/fonts/Funk/LT-Funk.otf");
+  font-family: "SourceSansPro";
+  src: url("../assets/fonts/SourceSansPro.ttf");
+}
+
+@font-face {
+  font-family: "Freedom";
+  src: url("../assets/fonts/Freedom.ttf");
 }
 
 ::-webkit-scrollbar {
@@ -18,4 +23,7 @@
 
 .new-page {
   @apply min-h-page translate-y-[5rem];
+}
+.title-genius {
+  text-shadow: "10px 10px 25px rgb(247 177 103),-10px 10px 25px rgb(247 177 103),-10px -10px 25px rgb(247 177 103),10px -10px 25px rgb(247 177 103)";
 }

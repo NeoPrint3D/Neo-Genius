@@ -119,7 +119,7 @@ export default function Home() {
         }}
       >
         <div className='flex justify-center items-center h-40 bg-white/10 backdrop-blur-[100px] shadow-2xl rounded-xl w-[90%] mb-10'>
-          <h1 className='font-body text-4xl font-semibold'>
+          <h1 className='font-body text-4xl sm:text-6xl font-semibold'>
             Master your studies with
           </h1>
         </div>

@@ -2,11 +2,12 @@ import { UserMenu } from './UserMenu';
 import { useScroll, useWindowSize } from "react-use"
 import Image from "next/image"
 import Link from "next/link"
-import { HtmlHTMLAttributes, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { AnimatePresence, m, Variants } from "framer-motion"
 import { GoSearch } from "react-icons/go"
 import { useRouter } from "next/router"
-
+import { CgDarkMode } from "react-icons/cg"
+import { useDarkMode } from '../../contexts/DarkModeContext';
 
 
 export default function Header() {
@@ -20,6 +21,7 @@ export default function Header() {
     const { width } = useWindowSize()
     const [boxWidth, setBoxWidth] = useState(0)
     const headerRef = useRef<HTMLHeadingElement>(null)
+    const { darkMode, setDarkMode } = useDarkMode()
     const isSignedIn = false
 
 
@@ -83,7 +85,7 @@ export default function Header() {
                                 opacity: 0
                             }}
                             animate={{
-                                backgroundColor: "rgba(248,248,248, .9)",
+                                backgroundColor: darkMode ? "rgba(0, 0, 0, 0.5)" : "rgba(255, 255, 255, 0.5)",
                                 width: "100%",
                                 borderRadius: 0,
                                 opacity: 1
@@ -157,16 +159,16 @@ export default function Header() {
                             )}
                         </AnimatePresence>
                     </div>
-                    <div className="flex justify-end items-center font-main text-white">
+                    <div className="flex gap-3 justify-end items-center font-main text-white">
                         <m.button
                             ref={searchButtonRef}
                             onClick={() => {
                                 if (!isMobile) setIsSearchedFocused(true)
                                 else router.push(`/search`)
                             }}
-                            className="flex justify-center items-center bg-primary p-3 rounded-full mr-3"
+                            className="flex justify-center items-center bg-primary p-3 rounded-full"
                             animate={{
-                                x: !isSearchedFocused && !isMobile ? 0 : isSignedIn ? `calc(${-width / 2 + boxWidth}px + 13.5rem)` : `calc(${-width / 2 + boxWidth}px +  "3rem"})`,
+                                x: !isSearchedFocused && !isMobile ? 0 : isSignedIn ? `calc(${-width / 2 + boxWidth}px + 13.5rem)` : `calc(${-width / 2 + boxWidth}px +  8.75rem)`,
                                 rotate: !isSearchedFocused && !isMobile ? 0 : width < 768 ? 360 : 360 * 2,
                             }}
                             transition={{
@@ -184,11 +186,22 @@ export default function Header() {
                         >
                             <GoSearch size={20} />
                         </m.button>
+                        <m.button
+                            className='flex justify-center items-center p-3 rounded-full'
+                            onClick={() => setDarkMode(!darkMode)}
+                            animate={{
+                                backgroundColor: darkMode ? "rgba(255, 255, 255, 1)" : "rgba(0, 0, 0, 1)",
+                                rotate: darkMode ? 360 : 0,
+                            }}
+
+                        >
+                            <CgDarkMode className='dark:text-black' size={20} />
+                        </m.button>
                         {!isSignedIn ?
                             <div className="flex items-center gap-3 mr-3   font-body font-[510] text-lg" ref={boxRef}>
                                 <Link href="login">
                                     <button
-                                        className="px-3 py-2 bg rounded-lg text-black hover:scale-105 active:scale-95 transition-all hover:bg-primary/40 border border-primary">
+                                        className="px-3 py-2 bg rounded-lg text-black dark:text-white hover:scale-105 active:scale-95 transition-all  border-2 border-primary">
 
                                         Log In
                                     </button>

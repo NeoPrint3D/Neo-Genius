@@ -1,11 +1,13 @@
 import { domAnimation, domMax, LazyMotion } from "framer-motion";
+import { useDarkMode } from "../../contexts/DarkModeContext";
 import Footer from "../Footer";
 import Header from "../Header/Header";
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
+    const { darkMode } = useDarkMode()
     return (
         <LazyMotion features={domMax}>
-            <div className="bg-[#f8f8f8] min-h-screen text-black">
+            <div className="min-h-screen transition-colors bg-[#f8f8f8] text-black dark:bg-gray-900 dark:text-white">
                 <Header />
                 {children}
                 <Footer />

@@ -36,7 +36,7 @@ export default function Home() {
         }}
       >
         <div className='flex flex-col items-center justify-center h-page'>
-          <h1 className="flex gap-5 items-center font-body text-center text-5xl sm:text-6xl   font-semibold">
+          <h1 className="flex gap-3 sm:gap-5 items-center font-body text-center text-4xl sm:text-6xl   font-semibold">
             <m.span
               initial={{ opacity: 0, y: -100 }}
               animate={{ opacity: 1, y: 0 }}
@@ -69,7 +69,7 @@ export default function Home() {
                 delay: 1
               }}
 
-              className='font-genius text-red-500 text-7xl sm:text-8xl font-medium ' style={{ textShadow: "10px 5px 10px rgba(247, 177, 103)" }}>Genius</m.span>
+              className='font-genius text-red-500 text-6xl sm:text-8xl font-medium ' style={{ textShadow: "10px 5px 10px rgba(247, 177, 103)" }}>Genius</m.span>
           </h1>
 
 
@@ -89,7 +89,7 @@ export default function Home() {
             <div>
               <Link href='/signup'>
                 <m.button
-                  className="bg-black text-white font-body font-semibold text-xl px-10 py-3 rounded-full mt-5 shadow-2xl shadow-primary"
+                  className="bg-black text-white dark:bg-white dark:text-black font-body font-semibold text-xl px-10 py-3 rounded-full mt-5 shadow-2xl shadow-primary"
                   whileHover={{
                     scale: 1.05,
                   }}
@@ -119,11 +119,11 @@ export default function Home() {
         }}
       >
         <div className='flex justify-center items-center h-40 bg-white/10 backdrop-blur-[100px] shadow-2xl rounded-xl w-[90%] mb-10'>
-          <h1 className='font-body text-4xl sm:text-6xl font-semibold'>
+          <h1 className='font-body text-4xl sm:text-6xl text-center font-semibold'>
             Master your studies with
           </h1>
         </div>
-        <div className='grid sm:grid-cols-3 items-center gap-10 w-[90%]'>
+        <div className='grid sm:grid-cols-3 items-center gap-10 w-[90%] mb-5'>
           <div className="flex justify-center items-center">
             <div className="flex shadow-2xl h-52 sm:h-80 rounded-xl w-full bg-white/10 backdrop-blur-[100px]">
 

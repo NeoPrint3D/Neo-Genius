@@ -35,80 +35,85 @@ export default function Home() {
           backgroundPosition: "bottom"
         }}
       >
-        <div className='flex flex-col items-center justify-center h-page'>
-          <h1 className="flex gap-3 sm:gap-5 items-center font-body text-center text-4xl sm:text-6xl   font-semibold">
-            <m.span
-              initial={{ opacity: 0, y: -100 }}
-              animate={{ opacity: 1, y: 0 }}
+        <div className='flex h-page'>
+
+          <div className='flex flex-col items-center justify-center mb-10'>
+            <h1 className="flex gap-3 sm:gap-5 items-center font-body text-center text-4xl sm:text-6xl   font-semibold ">
+              <m.span
+                initial={{ opacity: 0, y: -100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 1,
+                  ease: "easeInOut",
+                  delay: 0.5
+                }}
+              >
+                Become
+              </m.span>
+              <m.span
+                initial={{ opacity: 0, y: -100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 1,
+                  ease: "easeInOut",
+                  delay: 0.75
+                }}
+              >
+                a
+              </m.span>
+              <m.span
+
+                initial={{ y: -100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{
+                  duration: 1,
+                  ease: "easeInOut",
+                  delay: 1
+                }}
+
+                className='font-genius text-red-500 text-6xl sm:text-8xl font-medium ' style={{ textShadow: "10px 5px 10px rgba(247, 177, 103)" }}>Genius</m.span>
+            </h1>
+
+
+
+            <m.div className='flex flex-col items-center'
+              initial={{ opacity: 0, }}
+              animate={{ opacity: 1 }}
               transition={{
-                duration: 1,
+                duration: 2,
                 ease: "easeInOut",
-                delay: 0.5
+                delay: 1.5
               }}
             >
-              Become
-            </m.span>
-            <m.span
-              initial={{ opacity: 0, y: -100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 1,
-                ease: "easeInOut",
-                delay: 0.75
-              }}
-            >
-              a
-            </m.span>
-            <m.span
+              <p className="font-body text-lg sm:text-xl text-center font-semibold  max-w-[32ch] ">
+                We provide students with study tools to help them achieve exellency.
+              </p>
+              <div>
+                <Link href='/signup'>
+                  <m.button
+                    className="bg-black text-white dark:bg-white dark:text-black font-body font-semibold text-xl px-10 py-3 rounded-full mt-5 shadow-2xl shadow-primary"
+                    whileHover={{
+                      scale: 1.05,
+                    }}
+                    whileTap={{
+                      scale: 0.95,
+                    }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 500,
+                      damping: 30,
+                    }}
+                  >
+                    Get Started
+                  </m.button>
+                </Link>
+              </div>
+            </m.div>
+          </div>
+        </div >
 
-              initial={{ y: -100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{
-                duration: 1,
-                ease: "easeInOut",
-                delay: 1
-              }}
 
-              className='font-genius text-red-500 text-6xl sm:text-8xl font-medium ' style={{ textShadow: "10px 5px 10px rgba(247, 177, 103)" }}>Genius</m.span>
-          </h1>
-
-
-
-          <m.div className='flex flex-col items-center'
-            initial={{ opacity: 0, }}
-            animate={{ opacity: 1 }}
-            transition={{
-              duration: 2,
-              ease: "easeInOut",
-              delay: 1.5
-            }}
-          >
-            <p className="font-body text-lg sm:text-xl text-center font-semibold  max-w-[32ch] ">
-              We provide students with study tools to help them achieve exellency.
-            </p>
-            <div>
-              <Link href='/signup'>
-                <m.button
-                  className="bg-black text-white dark:bg-white dark:text-black font-body font-semibold text-xl px-10 py-3 rounded-full mt-5 shadow-2xl shadow-primary"
-                  whileHover={{
-                    scale: 1.05,
-                  }}
-                  whileTap={{
-                    scale: 0.95,
-                  }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 500,
-                    damping: 30,
-                  }}
-                >
-                  Get Started
-                </m.button>
-              </Link>
-            </div>
-          </m.div>
-        </div>
-      </div >
+      </div>
       <div className='flex flex-col justify-center items-center h-screen'
 
         style={{
@@ -118,7 +123,7 @@ export default function Home() {
           backgroundPosition: "top"
         }}
       >
-        <div className='flex justify-center items-center h-40 bg-white/10 backdrop-blur-[100px] shadow-2xl rounded-xl w-[90%] mb-10'>
+        <div className='flex justify-center items-center h-40 p-5 bg-white/10 backdrop-blur-[100px] shadow-2xl rounded-xl w-[90%] mb-5 sm:mb-10'>
           <h1 className='font-body text-4xl sm:text-6xl text-center font-semibold'>
             Master your studies with
           </h1>
@@ -141,10 +146,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-
-
       </div>
+
     </>
   )
 }

@@ -1,15 +1,10 @@
 import { m, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import React, { useCallback } from "react";
-import { drew } from "../../fake-data/users/drew";
+import React, { useCallback, useState } from "react";
 import Image from "next/image";
-export function UserMenu({
-  setUserMenuOpen,
-  userMenuOpen
-}: {
-  setUserMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  userMenuOpen: boolean;
-}) {
+import { drew } from "../../../fake-data/users/drew";
+export function UserMenu() {
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const handleBlur = useCallback((e: any) => {
     const currentTarget = e.currentTarget
     requestAnimationFrame(() => {
@@ -27,7 +22,7 @@ export function UserMenu({
       <AnimatePresence>
         {userMenuOpen &&
           <m.div
-            className="bg-white border border-primary text-black shadow-2xl  backdrop-blur-3xl w-40 mr-3 p-1 rounded-xl z-50 absolute mt-3 right-0"
+            className="bg-white/20 border border-primary text-black shadow-2xl  backdrop-blur-xl w-40 mr-3 p-1 rounded-xl z-50 absolute mt-7 right-0"
             initial={{ scale: 0, x: 100 }}
             animate={{ scale: 1, x: 0 }}
             exit={{ scale: 0, x: 100 }}
@@ -46,10 +41,10 @@ export function UserMenu({
               <div className="flex mb-2 border-b-2 border-primary w-full">
                 <div className="mx-auto">
                   <h1 className="text-xl">
-                    {drew.username}
+                    {"Username"}
                   </h1>
                   <h2 className="text-gray-700 text-sm">
-                    {drew.email}
+                    {"Email"}
                   </h2>
                 </div>
               </div>

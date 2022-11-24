@@ -27,3 +27,11 @@
 .title-genius {
   text-shadow: "10px 10px 25px rgb(247 177 103),-10px 10px 25px rgb(247 177 103),-10px -10px 25px rgb(247 177 103),10px -10px 25px rgb(247 177 103)";
 }
+
+html {
+  height: -webkit-fill-available;
+}
+
+body {
+  min-height: -webkit-fill-available;
+}

@@ -27,7 +27,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex justify-center h-screen"
+      <body className="flex justify-center h-screen"
         style={{
           backgroundImage: `url('/images/${returnDevice()}/neo-genius-home-1-${returnDevice()}.png')`,
           backgroundRepeat: "no-repeat",
@@ -36,7 +36,6 @@ export default function Home() {
         }}
       >
         <div className='flex h-page'>
-
           <div className='flex flex-col items-center justify-center mb-10'>
             <h1 className="flex gap-3 sm:gap-5 items-center font-body text-center text-4xl sm:text-6xl   font-semibold ">
               <m.span
@@ -113,8 +112,8 @@ export default function Home() {
         </div >
 
 
-      </div>
-      <div className='flex flex-col justify-center items-center h-screen'
+      </body>
+      <body className='flex flex-col justify-center items-center h-screen'
 
         style={{
           backgroundImage: `url('/images/${returnDevice()}/neo-genius-home-2-${returnDevice()}.png')`,
@@ -146,7 +145,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </body>
 
     </>
   )

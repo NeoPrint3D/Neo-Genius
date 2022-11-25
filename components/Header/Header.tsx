@@ -82,7 +82,7 @@ export default function Header() {
                             animate={{
                                 scale: width > 1440 ? 40 : 22,
                                 opacity: 1,
-                                backgroundColor: darkMode ? "rgba(0, 0, 0, 0.9)" : "rgba(255, 255, 255, 0.9)",
+                                backgroundColor: darkMode ? "rgba(0, 0, 0)" : "rgba(255, 255, 255)",
 
                             }}
                             exit={{

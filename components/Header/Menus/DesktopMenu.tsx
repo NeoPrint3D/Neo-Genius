@@ -50,7 +50,7 @@ export default function DesktopMenu({ isSearchFocused, setIsSearchFocused, searc
                 <AnimatePresence>
                     {isSearchFocused && (
                         <m.form
-                            className={"h-10 text-xl font-body font-semibold bg-white text-white dark:text-black "}
+                            className={"h-10 text-xl font-body font-semibold bg-white text-black "}
                             initial={{ width: 0, paddingLeft: 0, paddingRight: 0 }}
                             animate={{
                                 width: "20rem",
@@ -122,15 +122,15 @@ export default function DesktopMenu({ isSearchFocused, setIsSearchFocused, searc
                     <CgDarkMode className='dark:text-black' size={20} />
                 </m.button>
                 {!isSignedIn ?
-                    <div className="flex items-center gap-3 font-body font-[510] text-sm sm:text-lg mr-3" ref={boxRef}>
+                    <div className="flex items-center gap-3 font-body font-semibold text-sm sm:text-lg mr-3" ref={boxRef}>
                         <Link href="/login">
-                            <button className="px-2.5 py-2 sm:px-3 sm:py-2 bg rounded-lg text-black dark:text-white bg-white outline outline-1 dark:outline-white outline-black  dark:bg-[#111827] dark:shadow-white/5 dark:shadow-xl shadow-2xl hover:scale-105 active:scale-95 transition-all">
+                            <button className="px-2.5 py-2 sm:px-3 sm:py-2 bg rounded-lg text-black dark:text-white bg-white dark:bg-[#111827] dark:shadow-white/5 dark:shadow-xl shadow-2xl hover:scale-105 active:scale-95 transition-all">
                                 Log In
                             </button>
                         </Link>
                         <Link href="/signup">
                             <button
-                                className="px-2.5 py-2 sm:px-3 sm:py-2 bg-primary border border-primary  rounded-lg hover:scale-105 dark:shadow-white/5 dark:shadow-xl shadow-2xl ouline-1 outline-primary active:scale-95 transition-all">
+                                className="px-2.5 py-2 sm:px-3 sm:py-2 bg-primary border border-primary  rounded-lg hover:scale-105 dark:shadow-white/5 dark:shadow-xl shadow-2xl active:scale-95 transition-all">
                                 Sign Up
                             </button>
                         </Link>

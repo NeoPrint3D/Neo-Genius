@@ -113,7 +113,7 @@ export default function Home() {
 
 
       </body>
-      <body className='flex flex-col justify-center items-center h-screen'
+      <body className='flex items-center justify-center  h-screen'
 
         style={{
           backgroundImage: `url('/images/${returnDevice()}/neo-genius-home-2-${returnDevice()}.png')`,
@@ -122,29 +122,33 @@ export default function Home() {
           backgroundPosition: "top"
         }}
       >
-        <div className='flex justify-center items-center h-40 p-5 bg-white/10 backdrop-blur-[100px] shadow-2xl rounded-xl w-[90%] mb-5 sm:mb-10'>
-          <h1 className='font-body text-4xl sm:text-6xl text-center font-semibold'>
-            Master your studies with
-          </h1>
+        <div className='flex flex-col justify-center items-center w-[90%] '>
+
+          <div className='flex justify-center items-center h-40 p-5 bg-white/10 backdrop-blur-[100px] shadow-2xl rounded-xl w-full mb-5 sm:mb-10'>
+            <h1 className='font-body text-4xl sm:text-6xl text-center font-semibold'>
+              Master your studies with
+            </h1>
+          </div>
+          <div className='grid sm:grid-cols-3 items-center gap-10 mb-5 w-full'>
+            <div className="flex justify-center items-center">
+              <div className="flex shadow-2xl h-44 sm:h-80 rounded-xl w-full bg-white/10 backdrop-blur-[100px]">
+
+              </div>
+            </div>
+
+            <div className="flex justify-center items-center">
+              <div className="flex shadow-2xl h-44 sm:h-80 rounded-xl w-full bg-white/10 backdrop-blur-[100px]">
+
+              </div>
+            </div>
+            <div className="flex justify-center items-center">
+              <div className="flex shadow-2xl h-44 sm:h-80 rounded-xl w-full bg-white/10 backdrop-blur-[100px]">
+
+              </div>
+            </div>
+          </div>
         </div>
-        <div className='grid sm:grid-cols-3 items-center gap-10 w-[90%] mb-5'>
-          <div className="flex justify-center items-center">
-            <div className="flex shadow-2xl h-52 sm:h-80 rounded-xl w-full bg-white/10 backdrop-blur-[100px]">
 
-            </div>
-          </div>
-
-          <div className="flex justify-center items-center">
-            <div className="flex shadow-2xl h-52 sm:h-80 rounded-xl w-full bg-white/10 backdrop-blur-[100px]">
-
-            </div>
-          </div>
-          <div className="flex justify-center items-center">
-            <div className="flex shadow-2xl h-52 sm:h-80 rounded-xl w-full bg-white/10 backdrop-blur-[100px]">
-
-            </div>
-          </div>
-        </div>
       </body>
 
     </>

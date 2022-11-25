@@ -1,39 +1,37 @@
-import { useClickAway, useScroll, useWindowSize } from "react-use"
-import Image from "next/image"
-import Link from "next/link"
-import { SetStateAction, useEffect, useLayoutEffect, useRef, useState } from "react"
-import { AnimatePresence, m, Variants } from "framer-motion"
-import { GoSearch } from "react-icons/go"
-import { useRouter } from "next/router"
-import { CgDarkMode, CgMenuRight } from "react-icons/cg"
-import { useDarkMode } from '../../contexts/DarkModeContext';
-import Hamburger from '../Hamburger';
-import DesktopMenu from './Menus/DesktopMenu';
-import MobileMenu from "./Menus/MobileMenu"
+/* eslint-disable no-unused-vars */
+import { useClickAway, useWindowSize } from "react-use";
+import Image from "next/image";
+import Link from "next/link";
+import { SetStateAction, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { AnimatePresence, m, Variants } from "framer-motion";
+import { useDarkMode, useMobileMenu } from "../../contexts/MenuContexts";
+import { Sling as Hamburger } from "../Hamburger/Sling";
+import DesktopMenu from "./Menus/DesktopMenu";
+import MobileMenu from "./Menus/MobileMenu";
+import { UserMenu } from "./Menus/UserMenu";
 
 
 
 export default function Header() {
-    const router = useRouter()
-    const [isScrolled, setIsScrolled] = useState(false)
-    const [isSearchFocused, setIsSearchFocused] = useState(false)
-    const [userMenuOpen, setUserMenuOpen] = useState(false)
-    const [boxWidth, setBoxWidth] = useState(0)
-    const [searchQuery, setSearchQuery] = useState("")
-    const boxRef = useRef<HTMLDivElement>(null)
-    const { width } = useWindowSize()
-    const headerRef = useRef<HTMLHeadingElement>(null)
-    const { darkMode, setDarkMode } = useDarkMode()
-    const isMobile = width < 768
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [isSearchFocused, setIsSearchFocused] = useState(false);
+    const [userMenuOpen, setUserMenuOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+    const { width } = useWindowSize();
+    const headerRef = useRef<HTMLHeadingElement>(null);
+    const { darkMode } = useDarkMode();
+    const { isMobileMenuOpen, setIsMobileMenuOpen } = useMobileMenu();
+    const isSignedIn = true;
+
+
+
 
 
     //see if the user clicks off the header element
     useClickAway(headerRef, () => {
-        console.log("click away")
-        setUserMenuOpen(false)
-        setIsSearchFocused(false)
-        setSearchQuery("")
-    })
+        setIsSearchFocused(false);
+        setSearchQuery("");
+    });
 
 
 
@@ -43,16 +41,16 @@ export default function Header() {
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 0) {
-                setIsScrolled(true)
+                setIsScrolled(true);
             } else {
-                setIsScrolled(false)
+                setIsScrolled(false);
             }
-        }
-        window.addEventListener("scroll", handleScroll)
+        };
+        window.addEventListener("scroll", handleScroll);
         return () => {
-            window.removeEventListener("scroll", handleScroll)
-        }
-    }, [])
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
 
 
@@ -64,15 +62,46 @@ export default function Header() {
 
     return (
         <header ref={headerRef}>
-            <div className={`flex items-center h-20 w-full z-50 fixed`}>
+            <AnimatePresence>
+                {isMobileMenuOpen &&
+                    <m.div
+                        className="z-40 fixed h-20 w-screen bg-base-white dark:bg-base-black"
+                        initial={{ x: "100%" }}
+                        animate={{ x: 0 }}
+                        exit={{ x: "100%" }}
+                        transition={{
+                            type: "spring",
+                            stiffness: 100,
+                            damping: 20,
+                            mass: 0.5,
+                            duration: 0.5,
+                        }}
+                    />
+                }
+            </AnimatePresence>
+            <div className={`flex items-center h-20 w-full z-50 fixed   transition-all duration-1000  ${isScrolled && !isMobileMenuOpen && "shadow-2xl"}`}>
                 <Link href="/" className="sm:w-[10%]">
-                    <Image src="/logo.png" alt="Neo Genius Logo" width={isMobile ? 92 : 100} height={isMobile ? 92 : 100} className=" -translate-y-1 sm:-translate-y-2" priority />
+                    <div className="w-20 -translate-y-1">
+                        <Image src="/images/logo.png" alt="Neo Genius Logo" width={512} height={512} priority />
+                    </div>
                 </Link>
-                {isMobile ? <MobileMenu /> : <DesktopMenu isSearchFocused={isSearchFocused} setIsSearchFocused={setIsSearchFocused} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />}
+                <div className="flex sm:hidden gap-1 justify-end items-center font-body font-semibold text-white dark:text-[#2f2e3e] w-full ssm:w-[30%] ">
+                    {isSignedIn ?
+                        <UserMenu /> :
+                        <Link href="/signup">
+                            <button className="px-2.5 py-2 sm:px-3 sm:py-2 bg-primary rounded-lg hover:scale-105 active:scale-95 transition-all">
+                                Sign Up
+                            </button>
+                        </Link>
+                    }
+
+                    <Hamburger color={darkMode ? "#fff" : "#000"} toggled={isMobileMenuOpen} toggle={setIsMobileMenuOpen!} />
+                </div>
+                <DesktopMenu isSearchFocused={isSearchFocused} setIsSearchFocused={setIsSearchFocused} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
             </div>
             <div className='flex justify-center items-center fixed z-40 h-20 overflow-hidden w-screen'>
                 <AnimatePresence>
-                    {isScrolled &&
+                    {isScrolled && !isMobileMenuOpen &&
                         <m.div
                             initial={{
                                 scale: 1,
@@ -82,7 +111,7 @@ export default function Header() {
                             animate={{
                                 scale: width > 1440 ? 40 : 22,
                                 opacity: 1,
-                                backgroundColor: darkMode ? "rgba(0, 0, 0)" : "rgba(255, 255, 255)",
+                                backgroundColor: darkMode ? "rgba(0, 51, 86)" : "rgba(248, 248, 248)"
 
                             }}
                             exit={{
@@ -116,6 +145,7 @@ export default function Header() {
                     }
                 </AnimatePresence>
             </div>
+            <MobileMenu />
         </header>
-    )
+    );
 }

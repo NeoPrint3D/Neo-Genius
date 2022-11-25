@@ -3,26 +3,25 @@ import Link from "next/link";
 import React, { useCallback, useState } from "react";
 import Image from "next/image";
 import { drew } from "../../../fake-data/users/drew";
+import { useClickAway } from "react-use";
 export function UserMenu() {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const handleBlur = useCallback((e: any) => {
-    const currentTarget = e.currentTarget
-    requestAnimationFrame(() => {
-      if (!currentTarget.contains(document.activeElement)) {
-        setUserMenuOpen(false)
-      }
-    })
-  }, [setUserMenuOpen])
+  const userMenuRef = React.useRef<HTMLDivElement>(null);
+
+  useClickAway(userMenuRef, () => {
+    setUserMenuOpen(false);
+  });
+
 
   return (
-    <div className="mr-3" onBlur={e => handleBlur(e)} tabIndex={0}>
+    <div ref={userMenuRef} className="relative">
       <m.button className="flex w-full justify-end" onClick={() => setUserMenuOpen(!userMenuOpen)}>
-        <Image className="rounded-full w-10 h-10" src={drew.profilePicture} alt="" width={20} height={20} />
+        <Image className="rounded-full w-12 h-12" src={drew.profilePicture} alt="Profile Picture" width={20} height={20} />
       </m.button>
       <AnimatePresence>
         {userMenuOpen &&
           <m.div
-            className="bg-white/20 border border-primary text-black shadow-2xl  backdrop-blur-xl w-40 mr-3 p-1 rounded-xl z-50 absolute mt-7 right-0"
+            className="bg-white/20 border border-primary text-black shadow-2xl  backdrop-blur-xl w-40 p-1 rounded-xl z-[20000] absolute mt-3 right-0"
             initial={{ scale: 0, x: 100 }}
             animate={{ scale: 1, x: 0 }}
             exit={{ scale: 0, x: 100 }}
@@ -56,5 +55,5 @@ export function UserMenu() {
           </m.div>}
       </AnimatePresence>
     </div>
-  )
+  );
 }

@@ -5,5 +5,5 @@ export default function SignInPage() {
                 Sign In
             </div>
         </div>
-    )
+    );
 }

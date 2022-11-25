@@ -1,20 +1,20 @@
-import { useRouter } from "next/router"
-import { useEffect } from "react"
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function GoodbyePage() {
-    const router = useRouter()
+    const router = useRouter();
     useEffect(() => {
         const main = async () => {
             if (new URLSearchParams(router.pathname)) {
             }
 
-        }
-        main()
-    }, [router.pathname])
+        };
+        main();
+    }, [router.pathname]);
 
     return (
         <div>
             GoodBye
         </div>
-    )
+    );
 }

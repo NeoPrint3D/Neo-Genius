@@ -1,12 +1,12 @@
-import { AnimatePresence, m } from "framer-motion"
-import Link from "next/link"
-import { useRouter } from "next/router"
-import { useState, useEffect, useRef } from "react"
-import { CgDarkMode } from "react-icons/cg"
-import { GoSearch } from "react-icons/go"
-import { useWindowSize } from "react-use"
-import { useDarkMode } from "../../../contexts/DarkModeContext"
-import { UserMenu } from "./UserMenu"
+import { AnimatePresence, m } from "framer-motion";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { useState, useEffect, useRef } from "react";
+import { CgDarkMode } from "react-icons/cg";
+import { GoSearch } from "react-icons/go";
+import { useWindowSize } from "react-use";
+import { useDarkMode } from "../../../contexts/MenuContexts";
+import { UserMenu } from "./UserMenu";
 
 interface DesktopMenuProps {
     isSearchFocused: boolean
@@ -17,36 +17,35 @@ interface DesktopMenuProps {
 
 
 export default function DesktopMenu({ isSearchFocused, setIsSearchFocused, searchQuery, setSearchQuery }: DesktopMenuProps) {
-    const router = useRouter()
-    const { darkMode, setDarkMode } = useDarkMode()
-    const { width } = useWindowSize()
-    const searchBarParentRef = useRef<HTMLDivElement>(null)
-    const boxRef = useRef<HTMLDivElement>(null)
-    const isSignedIn = false
+    const router = useRouter();
+    const { darkMode, setDarkMode } = useDarkMode();
+    const { width } = useWindowSize();
+    const searchBarParentRef = useRef<HTMLDivElement>(null);
+    const boxRef = useRef<HTMLDivElement>(null);
+    const isSignedIn = false;
     const [elementWidths, setElementWidths] = useState({
         search: 0,
         nav: 0,
-    })
+    });
 
     function handleSearch(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault()
-        console.log(searchQuery)
-        router.push(`/search?query=${searchQuery}`)
+        e.preventDefault();
+        router.push(`/search?query=${searchQuery}`);
     }
 
     useEffect(() => {
         setElementWidths({
             search: searchBarParentRef.current?.offsetWidth || 0,
             nav: boxRef.current?.offsetWidth || 0,
-        })
+        });
 
-    }, [width, isSignedIn])
+    }, [width, isSignedIn]);
 
 
 
     return (
         <>
-            <div className="flex justify-center items-center w-[60%]" ref={searchBarParentRef}>
+            <div className="hidden sm:flex justify-center items-center w-[60%]" ref={searchBarParentRef}>
                 <AnimatePresence>
                     {isSearchFocused && (
                         <m.form
@@ -86,9 +85,9 @@ export default function DesktopMenu({ isSearchFocused, setIsSearchFocused, searc
                     )}
                 </AnimatePresence>
             </div>
-            <div className="flex gap-2 sm:gap-3 justify-end items-center font-main font-[600] text-white w-[30%] ">
+            <div className="hidden sm:flex gap-2 sm:gap-3 justify-end items-center font-main font-[600] text-white w-[30%] ">
                 <m.button
-                    onClick={() => { setIsSearchFocused(true) }}
+                    onClick={() => { setIsSearchFocused(true); }}
                     className="flex justify-center items-center shadow-2xl bg-primary p-2 sm:p-3 rounded-full"
                     animate={{
                         x: !isSearchFocused ? 0 : isSignedIn ? `calc(-${elementWidths.search}px + ${elementWidths.nav}px + 18rem)` : `calc(-${elementWidths.search}px + ${elementWidths.nav}px + 15.25rem)`,
@@ -124,13 +123,13 @@ export default function DesktopMenu({ isSearchFocused, setIsSearchFocused, searc
                 {!isSignedIn ?
                     <div className="flex items-center gap-3 font-body font-semibold text-sm sm:text-lg mr-3" ref={boxRef}>
                         <Link href="/login">
-                            <button className="px-2.5 py-2 sm:px-3 sm:py-2 bg rounded-lg text-black dark:text-white bg-white dark:bg-[#111827] dark:shadow-white/5 dark:shadow-xl shadow-2xl hover:scale-105 active:scale-95 transition-all">
+                            <button className="px-2.5 py-2 sm:px-3 sm:py-2 bg rounded-lg text-black dark:text-white bg-white dark:bg-base-black dark:shadow-white/5 dark:shadow-xl shadow-2xl hover:scale-105 active:scale-95 transition-all">
                                 Log In
                             </button>
                         </Link>
                         <Link href="/signup">
                             <button
-                                className="px-2.5 py-2 sm:px-3 sm:py-2 bg-primary border border-primary  rounded-lg hover:scale-105 dark:shadow-white/5 dark:shadow-xl shadow-2xl active:scale-95 transition-all">
+                                className="px-2.5 py-2 sm:px-3 sm:py-2 bg-primary  rounded-lg hover:scale-105 dark:shadow-white/5 dark:shadow-xl shadow-2xl active:scale-95 transition-all">
                                 Sign Up
                             </button>
                         </Link>
@@ -139,5 +138,5 @@ export default function DesktopMenu({ isSearchFocused, setIsSearchFocused, searc
                 }
             </div>
         </>
-    )
+    );
 }

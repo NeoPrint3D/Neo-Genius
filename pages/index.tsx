@@ -1,23 +1,30 @@
-import { m } from 'framer-motion'
-import Head from 'next/head'
-import Link from 'next/link'
-import { useEffect } from 'react'
-import { useWindowSize } from 'react-use'
+import { m } from "framer-motion";
+import Head from "next/head";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useWindowSize } from "react-use";
 export default function Home() {
-  const { width } = useWindowSize()
+  const { width } = useWindowSize();
+  const [imagesPath, setImagesPath] = useState({
+    path1: "url('/images/Backgrounds/desktop/neo-genius-home-1-desktop.png')",
+    path2: "url('/images/Backgrounds/desktop/neo-genius-home-2-desktop.png')",
+  });
+
   useEffect(() => {
-
-    // This is the code that will run on page load.
-
-    return () => {
-
+    if (width < 768) {
+      setImagesPath({
+        path1: "url('/images/Backgrounds/mobile/neo-genius-home-1-mobile.png')",
+        path2: "url('/images/Backgrounds/mobile/neo-genius-home-2-mobile.png')",
+      });
+    } else {
+      setImagesPath({
+        path1: "url('/images/Backgrounds/desktop/neo-genius-home-1-desktop.png')",
+        path2: "url('/images/Backgrounds/desktop/neo-genius-home-2-desktop.png')",
+      });
     }
-  }, [])
+  }, [width]);
 
 
-  const returnDevice = () => {
-    return width > 768 ? "desktop" : "mobile"
-  }
 
   return (
     <>
@@ -27,9 +34,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <body className="flex justify-center h-screen"
+      <main className="flex justify-center h-screen"
         style={{
-          backgroundImage: `url('/images/${returnDevice()}/neo-genius-home-1-${returnDevice()}.png')`,
+          backgroundImage: imagesPath.path1,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "bottom"
@@ -37,8 +44,8 @@ export default function Home() {
       >
         <div className='flex h-page'>
           <div className='flex flex-col items-center justify-center mb-10'>
-            <h1 className="flex gap-3 sm:gap-5 items-center font-body text-center text-4xl sm:text-6xl   font-semibold ">
-              <m.span
+            <div className="flex gap-3 sm:gap-5 items-center font-main  text-center text-4xl sm:text-6xl   font-semibold ">
+              <m.div
                 initial={{ opacity: 0, y: -100 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -48,8 +55,8 @@ export default function Home() {
                 }}
               >
                 Become
-              </m.span>
-              <m.span
+              </m.div>
+              <m.div
                 initial={{ opacity: 0, y: -100 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -59,21 +66,37 @@ export default function Home() {
                 }}
               >
                 a
-              </m.span>
-              <m.span
+              </m.div>
+              <div className="translate-y-[.375rem]">
+                <m.div
 
-                initial={{ y: -100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{
-                  duration: 1,
-                  ease: "easeInOut",
-                  delay: 1
-                }}
+                  initial={{ y: -100, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{
+                    duration: 1,
+                    ease: "easeInOut",
+                    delay: 1
+                  }}
+                  className='font-genius text-primary text-6xl sm:text-8xl font-medium'
+                  style={{ textShadow: "0px 0px 50px rgba(247, 177, 10, .35)" }}>
+                  Genius
+                </m.div>
 
-                className='font-genius text-red-500 text-6xl sm:text-8xl font-medium ' style={{ textShadow: "10px 5px 10px rgba(247, 177, 103)" }}>Genius</m.span>
-            </h1>
+                <m.div
+                  className="w-full bg-secondary h-1.5 -skew-x-12 -translate-y-3"
+                  initial={{ width: 0 }}
+                  animate={{ width: "100%" }}
+                  transition={{
+                    duration: 1,
+                    ease: "easeInOut",
+                    delay: 2
+                  }}
+
+                />
 
 
+              </div>
+            </div>
 
             <m.div className='flex flex-col items-center'
               initial={{ opacity: 0, }}
@@ -84,13 +107,13 @@ export default function Home() {
                 delay: 1.5
               }}
             >
-              <p className="font-body text-lg sm:text-xl text-center font-semibold  max-w-[32ch] ">
+              <p className="font-main  text-lg sm:text-xl text-center font-semibold  max-w-[32ch] ">
                 We provide students with study tools to help them achieve exellency.
               </p>
               <div>
                 <Link href='/signup'>
                   <m.button
-                    className="bg-black text-white dark:bg-white dark:text-black font-body font-semibold text-xl px-10 py-3 rounded-full mt-5 shadow-2xl shadow-primary"
+                    className="bg-black text-white dark:bg-white dark:text-black font-main  font-semibold text-xl px-10 py-3 rounded-full mt-5 shadow-2xl shadow-primary"
                     whileHover={{
                       scale: 1.05,
                     }}
@@ -112,11 +135,11 @@ export default function Home() {
         </div >
 
 
-      </body>
-      <body className='flex items-center justify-center  h-screen'
+      </main >
+      <main className='flex items-center justify-center  h-screen'
 
         style={{
-          backgroundImage: `url('/images/${returnDevice()}/neo-genius-home-2-${returnDevice()}.png')`,
+          backgroundImage: imagesPath.path2,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "top"
@@ -125,7 +148,7 @@ export default function Home() {
         <div className='flex flex-col justify-center items-center w-[90%] '>
 
           <div className='flex justify-center items-center h-40 p-5 bg-white/10 backdrop-blur-[100px] shadow-2xl rounded-xl w-full mb-5 sm:mb-10'>
-            <h1 className='font-body text-4xl sm:text-6xl text-center font-semibold'>
+            <h1 className='font-main  text-4xl sm:text-6xl text-center font-semibold'>
               Master your studies with
             </h1>
           </div>
@@ -149,8 +172,8 @@ export default function Home() {
           </div>
         </div>
 
-      </body>
+      </main >
 
     </>
-  )
+  );
 }

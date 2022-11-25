@@ -5,5 +5,5 @@ export default function CreateGeniusPage() {
                 Create Genius
             </div>
         </div>
-    )
+    );
 }

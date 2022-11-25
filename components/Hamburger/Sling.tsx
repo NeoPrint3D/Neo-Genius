@@ -1,60 +1,126 @@
-import { Burger } from './Burger'
-import React, { FunctionComponent } from 'react'
-import { CommonBurgerProps } from './'
+import React, { CSSProperties, FunctionComponent, useState } from "react";
 
-export const Sling = ((props) => (
-    <Burger {...props} render={(o) => (
+
+
+interface BurgerProps {
+    color?: string;
+    direction?: "right" | "left";
+    distance?: "sm" | "md" | "lg";
+    duration?: number;
+    easing?: string;
+    hideOutline?: boolean;
+    label?: string;
+    lines?: 1 | 2 | 3;
+    onToggle?: (toggled: boolean) => void;
+    render?: (props: BurgerProps) => JSX.Element;
+    rounded?: boolean;
+    size?: number;
+    toggle?: React.Dispatch<React.SetStateAction<boolean>>;
+    toggled?: boolean;
+}
+
+export const Sling = (({
+    color = "currentColor",
+    direction = "right",
+    easing = "cubic-bezier(0, 0, 0, 1)",
+    label = "",
+    onToggle,
+    toggle,
+    toggled,
+}: BurgerProps) => {
+
+    const [toggledInternal, toggleInternal] = useState(false);
+
+    const width = 36;
+    const room = 8;
+
+
+    const margin = 8;
+
+    const topOffset = 11.5;
+
+    const move = 7.7711818672;
+    const time = .4;
+
+
+
+
+    const toggleFunction = toggle || toggleInternal;
+    const isToggled = toggled !== undefined ? toggled : toggledInternal;
+    const isLeft = false;
+
+    const handler = () => {
+        toggleFunction(!isToggled);
+        if (typeof onToggle === "function") onToggle(!isToggled);
+    };
+
+
+    return (
         <div style={{ rotate: "180deg" }}>
             <div
                 className=""
-                aria-label={o.label}
-                aria-expanded={o.isToggled}
+                aria-label={label}
+                aria-expanded={isToggled}
                 data-testid="sling"
-                onClick={o.handler}
-                onKeyUp={(e) => e.key === 'Enter' && o.handler()}
+                onClick={handler}
+                onKeyUp={(e) => e.key === "Enter" && handler()}
                 role="button"
                 style={{
-                    ...o.burgerStyles,
-                    transform: `${o.isToggled
-                        ? `rotateY(${180 * (o.isLeft ? -1 : 1)}deg)`
-                        : 'none'
+                    cursor: "pointer",
+                    height: "48px",
+                    position: "relative",
+                    transition: `${time}s ${easing}`,
+                    userSelect: "none",
+                    width: "48px",
+                    transform: `${isToggled
+                        ? `rotateY(${180 * (isLeft ? -1 : 1)}deg)`
+                        : "none"
                         }`,
                 }}
                 tabIndex={0}
             >
                 <div style={{
-                    ...o.barStyles,
-                    width: `${o.width}px`,
-                    top: `${o.topOffset}px`,
-                    transition: `${o.time}s ${o.easing}`,
-                    transform: `${o.isToggled
-                        ? `rotate(${45 * (o.isLeft ? -1 : 1)}deg) translate(${o.move * (o.isLeft ? -1 : 1)}px, ${o.move}px)`
-                        : 'none'
+                    background: color,
+                    height: "3px",
+                    left: `${room}px`,
+                    position: "absolute",
+                    width: `${isToggled ? `${width}px` : `${width / 1.25}px`}`,
+                    top: `${topOffset}px`,
+                    transformOrigin: "",
+                    transform: `${isToggled
+                        ? `rotate(45deg) translate(${move}px, ${move}px)`
+                        : "none"
                         }`,
                 }} />
 
                 <div style={{
-                    ...o.barStyles,
-                    width: `${o.width / 1.5}px`,
-                    top: `${o.topOffset + o.barHeight + o.margin}px`,
-                    transition: `${o.time}s ${o.easing}`,
-                    transform: `${o.isToggled
-                        ? `scale(0, 1) translate(${(o.move * 20) * (o.isLeft ? -1 : 1)}px, 0)`
-                        : 'none'
+                    background: color,
+                    height: "3px",
+                    left: `${room}px`,
+                    position: "absolute",
+                    width: "20.5714285714px",
+                    top: `${topOffset + 3 + margin}px`,
+                    transition: `${time}s ${easing}`,
+                    transform: `${isToggled
+                        ? `scale(0, 1) translate(${(move * 20) * (isLeft ? -1 : 1)}px, 0)`
+                        : "none"
                         }`,
                 }} />
 
                 <div style={{
-                    ...o.barStyles,
-                    width: `${o.width}px`,
-                    top: `${o.topOffset + o.barHeight * 2 + o.margin * 2}px`,
-                    transition: `${o.time}s ${o.easing}`,
-                    transform: `${o.isToggled
-                        ? `rotate(${45 * (o.isLeft ? 1 : -1)}deg) translate(${o.move * (o.isLeft ? -1 : 1)}px, ${o.move * -1}px)`
-                        : 'none'
+                    background: color,
+                    height: "3px",
+                    left: `${room}px`,
+                    position: "absolute",
+                    width: `${width}px`,
+                    top: `${topOffset + 3 * 2 + margin * 2}px`,
+                    transition: `${time}s ${easing}`,
+                    transform: `${isToggled
+                        ? `rotate(${45 * (isLeft ? 1 : -1)}deg) translate(${move * (isLeft ? -1 : 1)}px, ${move * -1}px)`
+                        : "none"
                         }`,
                 }} />
             </div>
         </div>
-    )} />
-)) as FunctionComponent<CommonBurgerProps>
+    );
+});

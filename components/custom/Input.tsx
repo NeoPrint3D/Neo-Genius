@@ -16,7 +16,7 @@ export default function CustomInput({ props, filler, icon, customClass }: InputP
     const { darkMode } = useDarkMode();
     return (
         <div className={customClass || ""}>
-            <div className="flex group items-center outline rounded-md bg-inherit  outline-2 outline-black dark:outline-white  transition-colors duration-700 h-full">
+            <div className="flex group items-center outline rounded-lg bg-inherit  outline-2 outline-black dark:outline-white  transition-colors duration-700 h-full">
                 <LayoutGroup>
                     <m.p
                         style={{
@@ -29,7 +29,7 @@ export default function CustomInput({ props, filler, icon, customClass }: InputP
                         transition={{
                             duration: 0.25
                         }}
-                        className="absolute font-main px-1 py-0.5 rounded-lg "  >
+                        className="absolute font-main px-3 py-0.5 rounded-lg "  >
                         {filler}
                     </m.p>
                 </LayoutGroup>

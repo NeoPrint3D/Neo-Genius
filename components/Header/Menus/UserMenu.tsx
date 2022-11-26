@@ -3,18 +3,18 @@ import Link from "next/link";
 import React, { useCallback, useState } from "react";
 import Image from "next/image";
 import { drew } from "../../../fake-data/users/drew";
-import { useClickAway } from "react-use";
+import { useClickAway, useWindowSize } from "react-use";
 export function UserMenu() {
   const [userMenuOpen, setUserMenuOpen] = useState(true);
   const userMenuRef = React.useRef<HTMLDivElement>(null);
-
+const {width} = useWindowSize()
   useClickAway(userMenuRef, () => {
     setUserMenuOpen(false);
   });
 
 
   return (
-    <div className="flex justify-end w-full h-20 items-center fixed z-50 -translate-x-[3.5rem] ">
+    <div className={width < 768 ?"right-0 h-20 items-center fixed z-[100] mr-2":"relative"}>
       <div className="" ref={userMenuRef}>
         <m.button className="flex w-full justify-end" onClick={() => setUserMenuOpen(!userMenuOpen)}>
           <Image className="rounded-full w-12 h-12" src={drew.profilePicture} alt="Profile Picture" width={20} height={20} />

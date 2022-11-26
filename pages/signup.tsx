@@ -1,9 +1,97 @@
+import Input from "../components/custom/Input";
+import { HiOutlineMail } from "react-icons/hi";
+import { useEffect, useState } from "react";
+import { m } from "framer-motion";
+import { useWindowSize } from "react-use";
+
 export default function SignUpPage() {
+    const [email, setEmail] = useState("");
+    const [imageUrl, setImageUrl] = useState("url('/images/Backgrounds/SignUp.png')");
+    const { width } = useWindowSize();
+
+    useEffect(() => {
+        setImageUrl(width > 1024 ? "" : "url('/images/Backgrounds/SignUp.png')",);
+
+    }, [width]);
+
+
+
+
+    //design a signup page for me with a email input and a place for social sign ins
     return (
-        <div className="new-page">
-            <div className="">
-                Sign Up
+        <div className="grid lg:grid-cols-5 justify-center items-center  h-screen w-screen font-main ">
+            <div className="flex items-center h-full w-screen lg:w-full lg:col-span-2"
+                style={{
+                    backgroundImage: imageUrl,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "bottom"
+                }}
+            >
+
+                <div className="flex flex-col items-center w-full ">
+                    <div className="flex flex-col gap-9 bg-base-white/70 sm:scale-[1.2] lg:scale-100 lg:bg-transparent dark:bg-base-black/70 px-10 sm:px-20 py-10 rounded-3xl shadow-2xl lg:shadow-none">
+                        <div className="flex flex-col gap-5">
+                            <h1 className="text-5xl font-bold text-left">Sign Up</h1>
+                            <p className="text-[1rem] font-body text-left text-gray-700 dark:text-gray-200 ">Please enter your information to continue</p>
+                        </div>
+                        <form className="flex flex-col justify-center gap-5 items-center">
+                            <Input filler="Email" icon={<HiOutlineMail size={24} />} value={email} onChange={(e: any) => setEmail(e.target.value)} customClass="w-full h-12 text-lg" />
+                            <m.button className="bg-black text-white dark:bg-white dark:text-black font-main  font-semibold text-xl w-full py-3 rounded-lg shadow-2xl dark:shadow-2xl dark:shadow-secondary/50 "
+
+                                whileHover={{
+                                    scale: 1.05,
+                                }}
+                                whileTap={{
+                                    scale: 0.95,
+                                }}
+                                transition={{
+                                    type: "spring",
+                                    stiffness: 500,
+                                    damping: 30,
+                                }}
+                            >Sign Up</m.button>
+                        </form>
+                        <div className="grid grid-cols-8 items-center">
+                            <div className="w-full dark:bg-gray-50 bg-gray-700 h-1 rounded-l-full col-span-3 " />
+                            <h3 className="text-center font-body text-2xl col-span-2">Or</h3>
+                            <div className="w-full dark:bg-gray-50 bg-gray-700 h-1 rounded-r-full col-span-3" />
+                        </div>
+                        <div>
+                            <m.button className=" bg-white text-black dark:bg-black dark:text-white font-main  font-semibold text-xl w-full py-3 rounded-lg shadow-2xl dark:shadow-2xl dark:shadow-secondary/50 "
+
+                                whileHover={{
+                                    scale: 1.05,
+                                }}
+                                whileTap={{
+                                    scale: 0.95,
+                                }}
+                                transition={{
+                                    type: "spring",
+                                    stiffness: 500,
+                                    damping: 30,
+                                }}
+                            >Sign Up with Google</m.button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+            <div
+                className="hidden lg:flex items-center justify-center w-full h-[97.5%] col-span-3 rounded-l-3xl"
+                style={{
+                    backgroundImage: "url('/images/Backgrounds/SignUp.png')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "bottom"
+                }}
+            >
+                <h1
+                    className="text-6xl font-genius text-center text-white "
+                    style={{ textShadow: "0px 0px 50px rgba(247, 177, 10, .35)" }}
+                >
+                    Ready To Become A Genius
+                </h1>
+            </div>
+        </div >
     );
 }

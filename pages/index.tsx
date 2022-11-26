@@ -44,7 +44,7 @@ export default function Home() {
       >
         <div className='flex h-page'>
           <div className='flex flex-col items-center justify-center mb-10'>
-            <div className="flex gap-3 sm:gap-5 items-center font-main  text-center text-4xl sm:text-6xl   font-semibold ">
+            <div className="flex gap-2 sm:gap-5 items-center font-main  text-center text-[2.25rem] sm:text-6xl   font-black ">
               <m.div
                 initial={{ opacity: 0, y: -100 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -113,7 +113,7 @@ export default function Home() {
               <div>
                 <Link href='/signup'>
                   <m.button
-                    className="bg-black text-white dark:bg-white dark:text-black font-main  font-semibold text-xl px-10 py-3 rounded-full mt-5 shadow-2xl shadow-primary"
+                    className="bg-black text-white dark:bg-white dark:text-black font-main  font-semibold text-xl px-10 py-3 rounded-full mt-5 shadow-2xl shadow-secondary"
                     whileHover={{
                       scale: 1.05,
                     }}

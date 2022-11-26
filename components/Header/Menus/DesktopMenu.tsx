@@ -1,3 +1,4 @@
+import { DarkModeButton } from "../Buttons/DarkModeButton";
 import { AnimatePresence, m } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -7,6 +8,7 @@ import { GoSearch } from "react-icons/go";
 import { useWindowSize } from "react-use";
 import { useDarkMode } from "../../../contexts/MenuContexts";
 import { UserMenu } from "./UserMenu";
+import { useAuth } from "../../../contexts/AuthContext";
 
 interface DesktopMenuProps {
     isSearchFocused: boolean
@@ -22,7 +24,7 @@ export default function DesktopMenu({ isSearchFocused, setIsSearchFocused, searc
     const { width } = useWindowSize();
     const searchBarParentRef = useRef<HTMLDivElement>(null);
     const boxRef = useRef<HTMLDivElement>(null);
-    const isSignedIn = false;
+    const { isSignedIn } = useAuth();
     const [elementWidths, setElementWidths] = useState({
         search: 0,
         nav: 0,
@@ -108,18 +110,7 @@ export default function DesktopMenu({ isSearchFocused, setIsSearchFocused, searc
                 >
                     <GoSearch size={20} />
                 </m.button>
-                <m.button
-                    className='flex justify-center items-center p-2 sm:p-3 shadow-2xl rounded-full'
-                    onClick={() => setDarkMode(!darkMode)}
-                    initial={{ backgroundColor: "#000" }}
-                    animate={{
-                        backgroundColor: darkMode ? "rgba(255, 255, 255, 1)" : "rgba(0, 0, 0, 1)",
-                        rotate: darkMode ? 360 : 0,
-                    }}
-
-                >
-                    <CgDarkMode className='dark:text-black' size={20} />
-                </m.button>
+                <DarkModeButton />
                 {!isSignedIn ?
                     <div className="flex items-center gap-3 font-body font-semibold text-sm sm:text-lg mr-3" ref={boxRef}>
                         <Link href="/login">

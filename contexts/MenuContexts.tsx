@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 interface MobileMenuContextProps {
     isMobileMenuOpen: boolean
-    setIsMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>> | null
+    setIsMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const DarkModeContext = createContext({
@@ -13,7 +13,7 @@ const DarkModeContext = createContext({
 });
 const MobileMenuContext = createContext<MobileMenuContextProps>({
     isMobileMenuOpen: false,
-    setIsMobileMenuOpen: null
+    setIsMobileMenuOpen: null as unknown as React.Dispatch<React.SetStateAction<boolean>>
 });
 
 export default function MenuContextProvider({ children }: { children: React.ReactNode }) {

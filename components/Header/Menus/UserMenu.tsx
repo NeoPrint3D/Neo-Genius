@@ -5,7 +5,7 @@ import Image from "next/image";
 import { drew } from "../../../fake-data/users/drew";
 import { useClickAway } from "react-use";
 export function UserMenu() {
-  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(true);
   const userMenuRef = React.useRef<HTMLDivElement>(null);
 
   useClickAway(userMenuRef, () => {
@@ -14,14 +14,16 @@ export function UserMenu() {
 
 
   return (
-    <div ref={userMenuRef} className="relative">
-      <m.button className="flex w-full justify-end" onClick={() => setUserMenuOpen(!userMenuOpen)}>
-        <Image className="rounded-full w-12 h-12" src={drew.profilePicture} alt="Profile Picture" width={20} height={20} />
-      </m.button>
+    <div className="flex justify-end w-full h-20 items-center fixed z-50 -translate-x-[3.5rem] ">
+      <div className="" ref={userMenuRef}>
+        <m.button className="flex w-full justify-end" onClick={() => setUserMenuOpen(!userMenuOpen)}>
+          <Image className="rounded-full w-12 h-12" src={drew.profilePicture} alt="Profile Picture" width={20} height={20} />
+        </m.button>
+      </div>
       <AnimatePresence>
         {userMenuOpen &&
           <m.div
-            className="bg-white/20 border border-primary text-black shadow-2xl  backdrop-blur-xl w-40 p-1 rounded-xl z-[20000] absolute mt-3 right-0"
+            className="bg-base-white/70  border-2 dark:border-black border-white  text-white dark:text-black shadow-2xl  backdrop-blur-xl w-40 p-1 rounded-xl z-[50] absolute mt-48 right-0"
             initial={{ scale: 0, x: 100 }}
             animate={{ scale: 1, x: 0 }}
             exit={{ scale: 0, x: 100 }}
@@ -37,12 +39,12 @@ export function UserMenu() {
               }
             }}>
             <div className="flex flex-col items-center font-logo last:mb-1">
-              <div className="flex mb-2 border-b-2 border-primary w-full">
+              <div className="flex mb-2 border-b-2 dark:border-black border-white w-[95%]">
                 <div className="mx-auto">
                   <h1 className="text-xl">
                     {"Username"}
                   </h1>
-                  <h2 className="text-gray-700 text-sm">
+                  <h2 className="text-gray-700 dark:text-gray-200 text-sm">
                     {"Email"}
                   </h2>
                 </div>

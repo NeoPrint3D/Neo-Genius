@@ -7,7 +7,7 @@ import { useClickAway, useWindowSize } from "react-use";
 export function UserMenu() {
   const [userMenuOpen, setUserMenuOpen] = useState(true);
   const userMenuRef = React.useRef<HTMLDivElement>(null);
-const {width} = useWindowSize()
+const {width} = useWindowSize();
   useClickAway(userMenuRef, () => {
     setUserMenuOpen(false);
   });

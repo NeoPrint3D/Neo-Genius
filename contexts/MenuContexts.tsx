@@ -23,12 +23,10 @@ export default function MenuContextProvider({ children }: { children: React.Reac
 
     useEffect(() => {
         const localStorageDarkMode = localStorage.getItem("darkMode");
-        console.log(localStorageDarkMode);
         setDarkMode(localStorageDarkMode === "true");
     }, []);
 
     useEffect(() => {
-        console.log(darkMode);
         if (darkMode) {
             document.documentElement.classList.add("dark");
         } else {

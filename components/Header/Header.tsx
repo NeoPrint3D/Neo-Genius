@@ -66,7 +66,7 @@ export default function Header() {
             <AnimatePresence>
                 {isMobileMenuOpen &&
                     <m.div
-                        className="z-40 fixed h-20 w-screen bg-base-white/80 dark:bg-base-black/80 backdrop-blur-xl"
+                        className="z-40 fixed h-20 w-screen bg-base-light dark:bg-base-dark"
                         initial={{ x: "100%" }}
                         animate={{ x: 0 }}
                         exit={{ x: "100%" }}
@@ -80,7 +80,7 @@ export default function Header() {
                     />
                 }
             </AnimatePresence>
-            <div className={`flex items-center h-20 w-full z-50 fixed   transition-all duration-300  ${isScrolled && !isMobileMenuOpen && "shadow-2xl bg-base-white dark:bg-base-black/70 backdrop-blur-xl"}`}>
+            <div className={`flex items-center h-20 w-full z-50 fixed   transition-all duration-300  ${isScrolled && !isMobileMenuOpen && "shadow-2xl bg-base-light dark:bg-base-dark/70 backdrop-blur-xl"}`}>
                 <Link href="/" className="md:w-[10%]">
                     <button className="w-20 -translate-y-1" onClick={() => setIsMobileMenuOpen(false)}>
                         <Image src="/images/logo.png" alt="Neo Genius Logo" width={512} height={512} priority />

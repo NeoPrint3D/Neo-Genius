@@ -14,13 +14,14 @@
     "algoliasearch": "^4.14.2",
     "concurrently": "^7.6.0",
     "firebase": "^9.14.0",
-    "framer-motion": "^7.6.6",
+    "framer-motion": "^7.6.12",
     "is-typed-array": "^1.1.10",
     "next": "13.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.6.0",
-    "react-use": "^17.4.0"
+    "react-use": "^17.4.0",
+    "zod": "^3.19.1"
   },
   "devDependencies": {
     "@firebase/app-types": "^0.8.1",

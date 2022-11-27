@@ -8,17 +8,19 @@ interface InputProps {
     filler: string;
     icon?: ReactElement;
     customClass?: string;
+    status?: "error" | "success";
 }
 
 
 
-const Input = forwardRef<HTMLInputElement, InputProps>(({ props, filler, icon, customClass }, ref) => {
+const Input = forwardRef<HTMLInputElement, InputProps>(({ props, filler, icon, customClass, status }, ref) => {
     const [isFocused, setIsFocused] = useState(false);
     const { darkMode } = useDarkMode();
 
     return (
         <div className={customClass || ""} >
-            <div className="flex group items-center rounded-lg bg-inherit border-2 border-black dark:border-white  transition-colors duration-700 h-full">
+            <div className={`flex group items-center rounded-lg bg-inherit border-2 ${!status ? "border-black dark:border-white" : status === "error" ? "border-red-500" : "border-green-500"
+                }  h-full`}>
                 <LayoutGroup>
                     <m.p
                         style={{
@@ -37,8 +39,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ props, filler, icon, c
                 </LayoutGroup>
                 <input  {...props} ref={ref} className="bg-transparent pl-2 py-2 rounded outline-none w-full h-full" onFocus={() => setIsFocused(true)} onBlur={(e) => setIsFocused(e.target.value ? true : false)} />
                 {icon &&
-                    <div className="flex justify-end transition-colors duration-300 w-fit">
-                        <div className="p-1 mr-1 rounded-full ">
+                    <div className="flex justify-end w-fit">
+                        <div className={`p-1 mr-1 rounded-full ${!status ? "" : status === "error" ? "text-red-500" : "text-green-500"}`}>
                             {icon}
                         </div>
                     </div>

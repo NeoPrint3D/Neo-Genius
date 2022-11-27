@@ -24,7 +24,7 @@ export function UserMenu() {
         <AnimatePresence>
           {userMenuOpen &&
             <m.div
-              className="bg-base-white/70  border-2 dark:border-black border-white  text-white dark:text-black shadow-2xl  backdrop-blur-xl w-40 p-1 rounded-xl z-[50] absolute mt-48 right-0"
+              className="bg-base-light/70  border-2 dark:border-black border-white  text-white dark:text-black shadow-2xl  backdrop-blur-xl w-40 p-1 rounded-xl z-[50] absolute mt-48 right-0"
               initial={{ scale: 0, x: 100 }}
               animate={{ scale: 1, x: 0 }}
               exit={{ scale: 0, x: 100 }}

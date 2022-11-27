@@ -8,7 +8,7 @@ export default function MobileMenu() {
         <AnimatePresence>
             {isMobileMenuOpen &&
                 <m.div
-                    className="flex flex-col w-screen h-page bottom-0 fixed z-10 bg-base-white/80 dark:bg-base-black/80 backdrop-blur-xl"
+                    className="flex flex-col w-screen h-page bottom-0 fixed z-10 bg-base-light dark:bg-base-dark"
                     initial={{ x: "100%" }}
                     animate={{ x: 0 }}
                     exit={{ x: "100%" }}

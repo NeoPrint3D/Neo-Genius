@@ -3,7 +3,7 @@ import { forwardRef, ReactElement, useState } from "react";
 import { useDarkMode } from "../../contexts/MenuContexts";
 
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface InputProps {
     props?: React.HTMLProps<HTMLInputElement>;
     filler: string;
     icon?: ReactElement;
@@ -11,11 +11,13 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 
-export default function CustomInput({ props, filler, icon, customClass }: InputProps) {
-    const [focused, setFocused] = useState(false);
+
+const Input = forwardRef<HTMLInputElement, InputProps>(({ props, filler, icon, customClass }, ref) => {
+    const [isFocused, setIsFocused] = useState(false);
     const { darkMode } = useDarkMode();
+
     return (
-        <div className={customClass || ""}>
+        <div className={customClass || ""} >
             <div className="flex group items-center rounded-lg bg-inherit border-2 border-black dark:border-white  transition-colors duration-700 h-full">
                 <LayoutGroup>
                     <m.p
@@ -23,8 +25,8 @@ export default function CustomInput({ props, filler, icon, customClass }: InputP
                             pointerEvents: "none",
                         }}
                         animate={{
-                            opacity: focused ? 0 : 1,
-                            color: focused ? "#fff" : darkMode ? "#d6d6d6ff" : "#292828ff",
+                            opacity: isFocused ? 0 : 1,
+                            color: isFocused ? "#fff" : darkMode ? "#d6d6d6ff" : "#8a8c8f",
                         }}
                         transition={{
                             duration: 0.25
@@ -33,7 +35,7 @@ export default function CustomInput({ props, filler, icon, customClass }: InputP
                         {filler}
                     </m.p>
                 </LayoutGroup>
-                <input  {...props} className="bg-transparent pl-2 py-2 rounded outline-none w-full h-full" onFocus={() => setFocused(true)} onBlur={(e) => setFocused(e.target.value ? true : false)} />
+                <input  {...props} ref={ref} className="bg-transparent pl-2 py-2 rounded outline-none w-full h-full" onFocus={() => setIsFocused(true)} onBlur={(e) => setIsFocused(e.target.value ? true : false)} />
                 {icon &&
                     <div className="flex justify-end transition-colors duration-300 w-fit">
                         <div className="p-1 mr-1 rounded-full ">
@@ -42,8 +44,12 @@ export default function CustomInput({ props, filler, icon, customClass }: InputP
                     </div>
                 }
             </div>
-        </div>
+        </div >
     );
-}
+});
 
+
+Input.displayName = "Input";
+
+export default Input;
 

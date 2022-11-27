@@ -25,17 +25,10 @@ export default function MenuContextProvider({ children }: { children: React.Reac
         const localStorageDarkMode = localStorage.getItem("darkMode");
         console.log(localStorageDarkMode);
         setDarkMode(localStorageDarkMode === "true");
-
-        //set the html tag to dark have the dark
-        if (localStorageDarkMode === "true") {
-            document.documentElement.classList.add("dark");
-        } else {
-            document.documentElement.classList.remove("dark");
-        }
     }, []);
 
     useEffect(() => {
-        localStorage.setItem("darkMode", JSON.stringify(darkMode));
+        console.log(darkMode);
         if (darkMode) {
             document.documentElement.classList.add("dark");
         } else {

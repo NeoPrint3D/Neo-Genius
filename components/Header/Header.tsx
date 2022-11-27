@@ -86,13 +86,13 @@ export default function Header() {
                         <Image src="/images/logo.png" alt="Neo Genius Logo" width={512} height={512} priority />
                     </button>
                 </Link>
-                <div className="flex md:hidden gap-1 justify-end items-center font-body font-semibold text-white dark:text-[#2f2e3e] w-full ssm:w-[30%] ">
+                <div className="flex sm:hidden gap-1 justify-end items-center font-body font-semibold text-white dark:text-[#2f2e3e] w-full ssm:w-[30%] ">
                     <Hamburger />
                 </div>
                 <DesktopMenu isSearchFocused={isSearchFocused} setIsSearchFocused={setIsSearchFocused} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
             </div>
             <MobileMenu />
-            {isSignedIn && <UserMenu />}
+            {width < 1024 && isSignedIn && <UserMenu />}
         </header>
     );
 }

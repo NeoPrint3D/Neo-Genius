@@ -8,7 +8,10 @@ export function DarkModeButton({ size = 20 }: { size?: number }) {
 
     return (
         <m.button className={"flex justify-center items-center p-2 sm:p-3 shadow-2xl rounded-full"}
-            onClick={() => setDarkMode(!darkMode)}
+            onClick={() => {
+                setDarkMode(!darkMode);
+                localStorage.setItem("darkMode", JSON.stringify(!darkMode));
+            }}
             initial={{ backgroundColor: "#000" }}
             animate={{
                 backgroundColor: darkMode ? "rgba(255, 255, 255, 1)" : "rgba(0, 0, 0, 1)",
@@ -16,6 +19,6 @@ export function DarkModeButton({ size = 20 }: { size?: number }) {
             }}
         >
             <CgDarkMode className='text-white dark:text-black' size={size} />
-        </m.button>
+        </m.button >
     );
 }

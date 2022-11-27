@@ -9,7 +9,7 @@ const AuthContext = createContext({
 });
 
 export default function AuthContextProvider({ children }: { children: React.ReactNode }) {
-    const [isSignedIn, setIsSignedIn] = useState(true);
+    const [isSignedIn, setIsSignedIn] = useState(false);
     return (
         <AuthContext.Provider
             value={{

@@ -114,7 +114,7 @@ export default function DesktopMenu({ isSearchFocused, setIsSearchFocused, searc
                 {!isSignedIn ?
                     <div className="flex items-center gap-3 font-body font-semibold text-sm sm:text-lg mr-3" ref={boxRef}>
                         <Link href="/login">
-                            <button className="px-2.5 py-2 sm:px-3 sm:py-2 bg rounded-lg text-black dark:text-white bg-white dark:bg-base-black dark:shadow-white/5 dark:shadow-xl shadow-2xl hover:scale-105 active:scale-95 transition-all">
+                            <button className="px-2.5 py-2 sm:px-3 sm:py-2 bg rounded-lg text-black dark:text-white bg-transparent dark:shadow-white/5 dark:shadow-xl shadow-2xl hover:scale-105 active:scale-95 transition-all">
                                 Log In
                             </button>
                         </Link>

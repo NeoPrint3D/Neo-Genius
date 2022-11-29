@@ -20,7 +20,7 @@ interface AuthContextProps {
     authRef: User | null
 }
 
-const AuthContext = createContext({
+const AuthContext = createContext<AuthContextProps>({
     isSignedIn: false,
     user: null,
     authRef: null,

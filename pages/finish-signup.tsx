@@ -14,7 +14,7 @@ export default function FinishSignup() {
             router.query.oobCode) {
             console.log("signing in with email link");
             const email = localStorage.getItem("emailForSignIn");
-            signInWithEmailLink(auth, email, router.asPath).then((result) => {
+            signInWithEmailLink(auth, email!, router.asPath).then((result) => {
                 console.log("result", result);
                 router.push("/");
             });

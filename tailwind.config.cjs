@@ -20,7 +20,6 @@ module.exports = {
 
       fontFamily: {
         "main": ["\"SourceSansPro\"", "sans-serif"],
-        "body": ["\"Bondoni\"", "serif"],
         "genius": ["\"Freedom\"", "serif"],
       },
       minHeight: {

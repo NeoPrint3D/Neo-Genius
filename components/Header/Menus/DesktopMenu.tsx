@@ -51,7 +51,7 @@ export default function DesktopMenu({ isSearchFocused, setIsSearchFocused, searc
                 <AnimatePresence>
                     {isSearchFocused && (
                         <m.form
-                            className={"h-10 text-xl font-body font-semibold bg-white text-black "}
+                            className={"h-10 text-xl font-main font-semibold bg-white text-black "}
                             initial={{ width: 0, paddingLeft: 0, paddingRight: 0 }}
                             animate={{
                                 width: "20rem",
@@ -87,7 +87,7 @@ export default function DesktopMenu({ isSearchFocused, setIsSearchFocused, searc
                     )}
                 </AnimatePresence>
             </div>
-            <div className="hidden sm:flex gap-2 sm:gap-3 justify-end items-center font-main font-[600] text-white w-[30%] ">
+            <div className="hidden sm:flex gap-2 sm:gap-3 justify-end items-center text-white w-[30%] ">
                 <m.button
                     onClick={() => { setIsSearchFocused(true); }}
                     className="flex justify-center items-center shadow-2xl bg-primary p-2 sm:p-3 rounded-full"
@@ -112,7 +112,7 @@ export default function DesktopMenu({ isSearchFocused, setIsSearchFocused, searc
                 </m.button>
                 <DarkModeButton />
                 {!isSignedIn ?
-                    <div className="flex items-center gap-3 font-body font-semibold text-sm sm:text-lg mr-3" ref={boxRef}>
+                    <div className="flex items-center gap-3 font-main font-semibold text-sm sm:text-lg mr-3" ref={boxRef}>
                         <Link href="/login">
                             <button className="px-2.5 py-2 sm:px-3 sm:py-2 bg rounded-lg text-black dark:text-white bg-transparent dark:shadow-white/5 dark:shadow-xl shadow-2xl hover:scale-105 active:scale-95 transition-all">
                                 Log In

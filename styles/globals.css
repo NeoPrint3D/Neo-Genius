@@ -3,11 +3,6 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Bodoni";
-  src: url("../assets/fonts/Bodoni.ttf");
-}
-
-@font-face {
   font-family: "SourceSansPro";
   src: url("../assets/fonts/SourceSansPro.ttf");
 }

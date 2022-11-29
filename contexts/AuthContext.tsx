@@ -32,16 +32,16 @@ export default function AuthContextProvider({ children }: { children: React.Reac
     const [user, setUser] = useState<GeniusUser | null>(null);
 
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
-            console.log("user", user);
-            if (!auth.currentUser) { setIsSignedIn(false); setAuthRef(null); setUser(null); return; }
-            const potentialUser = (await getDocs(query(collection(firetoreLite, "users"), where("email", "==", auth.currentUser.email), limit(1)))).docs[0]?.data();
-            if (!potentialUser) { setIsSignedIn(false); return; }
-            setIsSignedIn(true);
-            setUser(potentialUser as GeniusUser);
-        });
-    }, []);
+    // useEffect(() => {
+    //     const unsubscribe = onAuthStateChanged(auth, async (user) => {
+    //         console.log("user", user);
+    //         if (!auth.currentUser) { setIsSignedIn(false); setAuthRef(null); setUser(null); return; }
+    //         const potentialUser = (await getDocs(query(collection(firetoreLite, "users"), where("email", "==", auth.currentUser.email), limit(1)))).docs[0]?.data();
+    //         if (!potentialUser) { setIsSignedIn(false); return; }
+    //         setIsSignedIn(true);
+    //         setUser(potentialUser as GeniusUser);
+    //     });
+    // }, []);
 
 
 

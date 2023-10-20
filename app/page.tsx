@@ -1,7 +1,9 @@
 import HomeModelHero from "@/components/HomeModelHero";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import Image from "next/image";
+import { headers, cookies } from "next/headers";
 
-export default function Home() {
+export default async function Home() {
   return (
     <main>
       <div className="absolute -z-40 h-full w-full overflow-hidden">
@@ -15,14 +17,8 @@ export default function Home() {
         >
           <defs>
             <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop
-                offset="0%"
-                style={{ stopColor: "rgb(254, 200, 129)" }}
-              ></stop>
-              <stop
-                offset="100%"
-                style={{ stopColor: "rgb(239, 98, 159)" }}
-              ></stop>
+              <stop offset="0%" style={{ stopColor: "#fec881" }}></stop>
+              <stop offset="100%" style={{ stopColor: "#ef629f" }}></stop>
             </linearGradient>
           </defs>
           <path id="blob" fill="url(#gradient)" style={{ opacity: 0.6 }}>
@@ -63,14 +59,8 @@ export default function Home() {
         >
           <defs>
             <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop
-                offset="0%"
-                style={{ stopColor: "rgb(255, 151, 112)" }}
-              ></stop>
-              <stop
-                offset="100%"
-                style={{ stopColor: "rgb(124, 11, 43)" }}
-              ></stop>
+              <stop offset="0%" style={{ stopColor: "#ff9770" }}></stop>
+              <stop offset="100%" style={{ stopColor: "#7c0b2b" }}></stop>
             </linearGradient>
           </defs>
           <path id="blob" fill="url(#gradient)" style={{ opacity: 0.6 }}>
@@ -100,10 +90,10 @@ export default function Home() {
         </svg>
       </div>
       <section className="flex h-screen grid-cols-2 items-center">
-        <h1 className="text-white max-w-[30ch] px-20 py-5 rounded-full m-5 font-logo text-7xl font-black uppercase mt-[4.25rem]  hue-rotate-180 bg-black/40 backdrop-blur-[1px]">
-          Supercharge your learning with AI powered flashcards
-        </h1>
-        <div className="absolute flex h-full w-full items-center justify-end -z-30">
+        <div className="max-w-[10ch] mx-3 font-logo text-7xl uppercase mt-[4.25rem]">
+          <h1>Supercharge your learning with AI powered flashcards</h1>
+        </div>
+        <div className="absolute flex h-full w-full lg:w-[50%] items-center justify-end -z-30 right-0 overflow-hidden">
           <HomeModelHero />
         </div>
       </section>

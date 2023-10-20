@@ -1,50 +1,44 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
+import { useWindowScroll } from "react-use";
+import { useMemo } from "react";
 export default function Wrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false);
+  const { y } = useWindowScroll();
 
+  const excluededPaths = useMemo(() => {
+    return ["/auth/login", "/auth/signup"];
+  }, []);
   // see if the user scrolled down
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const header = document.querySelector("header");
-      if (header) {
-        setIsScrolled(window.scrollY > header.clientHeight);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    console.log(isScrolled);
-
-    return () => {};
-  }, [isScrolled]);
-
   const variants: Variants = {
-    hidden: { width: "100%" },
+    hidden: {
+      backdropFilter: "blur(0px) hue-rotate(0deg)",
+      width: "100vw",
+      boxShadow: "rgba(0, 0, 0, 0) 0px 3px 6px, rgba(0, 0, 0, 0) 0px 3px 6px",
+    },
     visible: {
       backdropFilter: "blur(20px) hue-rotate(-45deg)",
-      width: "97.5%",
-      position: pathname !== "/" ? "fixed" : "relative",
+      width: "97.5vw",
       boxShadow:
         "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
     },
   };
-  return (
-    <div className="fixed mt-5 flex w-full justify-center">
+
+  return !excluededPaths.includes(pathname) ? (
+    <div className="flex w-full justify-center fixed">
       <motion.header
-        className="grid h-20 w-full grid-cols-2 items-center rounded-3xl p-2 px-5"
-        animate={isScrolled ? "visible" : "hidden"}
+        initial={false}
+        className="h-20 rounded-3xl w-full grid grid-cols-3 items-center px-3 mt-5"
+        animate={y > 0 ? "visible" : "hidden"}
         variants={variants}
       >
         {children}
       </motion.header>
     </div>
+  ) : (
+    <></>
   );
 }
